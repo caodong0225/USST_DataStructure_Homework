@@ -139,14 +139,18 @@ int main()
     struct Node *headA = initList();
     struct Node *headB = initList();
 
-    int x;
+    int x, y;
     printf("please input the numbers of LinkedListA's elements:");
     scanf("%d", &x);
     printf("please input LinkedListA's elements:\n");
-    int y;
     while (x--)
     {
-        scanf("%d", &y);
+        if (scanf("%d", &y) != 1)
+        {
+            printf("input error!\n");
+            // 退出程序
+            exit(-1);
+        }
         headA = insertNode(headA, y);
     }
 
@@ -155,6 +159,12 @@ int main()
     printf("please input LinkedListB's elements:\n");
     while (x--)
     {
+        if (scanf("%d", &y) != 1)
+        {
+            printf("input error!\n");
+            // 退出程序
+            exit(-1);
+        }
         scanf("%d", &y);
         headB = insertNode(headB, y);
     }
