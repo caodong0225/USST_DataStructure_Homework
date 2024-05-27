@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define ABS(x) ((x) < 0 ? -(x) : (x))
 // 定义一个带头节点的单链表
 typedef struct LNode
 {
@@ -48,7 +49,7 @@ LinkList FindOdd(LinkList L)
 
     while (p != NULL)
     {
-        if (p->data % 2 == 1)
+        if (ABS(p->data) % 2 == 1)
         {
             // 创建一个新的节点
             LinkList newNode = (LinkList)malloc(sizeof(LNode));
@@ -87,7 +88,12 @@ int main()
     printf("please input the list:\n");
     while (x--)
     {
-        scanf("%d", &y);
+        if (scanf("%d", &y) != 1)
+        {
+            printf("input error!\n");
+            // 退出程序
+            exit(-1);
+        }
         InsertList(L, y);
     }
     printf("The original list is:\n");
@@ -95,7 +101,7 @@ int main()
     LinkList q = FindOdd(L);
     printf("The list of even numbers is:\n");
     PrintList(q);
-    printf("The list after removing the odd numbers is:\n");
+    printf("The list after removing the even numbers is:\n");
     PrintList(L);
     return 0;
 }
