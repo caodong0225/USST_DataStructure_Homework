@@ -84,7 +84,12 @@ int main()
     LinkList L = InitList();
     printf("please input the number of the list:");
     int x, y;
-    scanf("%d", &x);
+    if (scanf("%d", &x) != 1)
+    {
+        printf("input error!\n");
+        // 退出程序
+        exit(-1);
+    }
     printf("please input the list:\n");
     while (x--)
     {
