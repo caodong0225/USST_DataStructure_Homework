@@ -30,4 +30,3 @@ jobs:
     - name: Test
       working-directory: build
       run: ctest -C ${{ env.BUILD_TYPE }}
-
