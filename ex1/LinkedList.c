@@ -165,7 +165,6 @@ int main()
             // 退出程序
             exit(-1);
         }
-        scanf("%d", &y);
         headB = insertNode(headB, y);
     }
     /*
@@ -183,12 +182,12 @@ int main()
     printf("Linked ListA: ");
     printList(headA);
 
-    printf("\nLinked ListB: ");
+    printf("Linked ListB: ");
     printList(headB);
 
     mergeLists(&headA, headB); // 注意传递headA的地址
 
-    printf("\nMerged Linked List: ");
+    printf("Merged Linked List: ");
     printList(headA);
 
     return 0;
