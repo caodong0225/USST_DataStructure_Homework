@@ -1,0 +1,37 @@
+name: CMake Multi-Platform and Build Types
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        build_type: [Release, Debug]
+
+    env:
+      BUILD_TYPE: ${{ matrix.build_type }}
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup CMake
+      if: runner.os == 'Windows'
+      uses: lukka/get-cmake@v3
+
+    - name: Configure CMake
+      run: cmake -B build -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }}
+
+    - name: Build
+      run: cmake --build build --config ${{ env.BUILD_TYPE }}
+
+    - name: Test
+      working-directory: build
+      run: ctest -C ${{ env.BUILD_TYPE }}
+
